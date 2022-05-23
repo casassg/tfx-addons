@@ -60,7 +60,7 @@ setup(
     packages=find_namespace_packages(include=[
         # Add here new library package
         "tfx_addons",
-        # "tfx_addons.mlmd_client",
+        "tfx_addons.mlmd_client.*",
 
         # "tfx_addons.schema_curation.*",
     ]),
