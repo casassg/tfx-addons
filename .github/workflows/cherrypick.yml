@@ -7,7 +7,7 @@ jobs:
     name: Cherry Pick
     # Only cherry pick if user is a release manager
     # NB(gcasassaez): We unfortunately have to use fromJSON as GitHub doesn't have a way to specify constant arrays - https://github.community/t/passing-an-array-literal-to-contains-function-causes-syntax-error/17213/3
-    if: github.event.issue.pull_request != '' && contains(github.event.comment.body, '/cherry-pick') && contains(fromJson('["casassg2", "hanneshapke"]'), github.event.sender.login)
+    if: github.event.issue.pull_request != '' && contains(github.event.comment.body, '/cherry-pick') && contains(fromJson('["casassg", "hanneshapke"]'), github.event.sender.login)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the latest code
