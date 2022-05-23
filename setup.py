@@ -62,7 +62,7 @@ setup(
         "tfx_addons",
         "tfx_addons.mlmd_client.*",
 
-        # "tfx_addons.schema_curation.*",
+        "tfx_addons.schema_curation.*",
     ]),
     classifiers=[
         "Intended Audience :: Developers",
