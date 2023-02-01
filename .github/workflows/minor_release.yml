@@ -43,19 +43,19 @@ jobs:
         echo "::set-output name=new_version::$(python ./.github/workflows/update_main.py)"
     - name: Commit main change
       run: |
-        git checkout -b ${{ github.event.issue.user.login }}/update-${{ steps.update-main.outputs.new_version }}
+        git checkout -b ${{ github.triggering_actor }}/update-${{ steps.update-main.outputs.new_version }}
         git add tfx_addons/version.py
         git commit --message "Update main to {{ steps.set-version.outputs.version }}"
-        git push origin ${{ github.event.issue.user.login }}/update-${{ steps.update-main.outputs.new_version }}
+        git push origin ${{ github.triggering_actor }}/update-${{ steps.update-main.outputs.new_version }}
         
     - name: Create pull request into main
       uses: thomaseizinger/create-pull-request@1.0.0
       with:
        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-       head: ${{ github.event.issue.user.login }}/update-${{ steps.update-main.outputs.new_version }}
+       head: ${{ github.triggering_actor }}/update-${{ steps.update-main.outputs.new_version }}
        base: main
        title: Update minor version to ${{ steps.update-main.outputs.new_version }}
-       reviewers: ${{ github.event.issue.user.login }}
+       reviewers: ${{ github.triggering_actor }}
        body: |
            This is an automatic PR to update main to next minor version (${{ steps.update-main.outputs.new_version }}). 
            Wait to merge until ${{ steps.set-version.outputs.version }} has been released as a full release.
