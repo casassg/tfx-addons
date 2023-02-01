@@ -23,7 +23,7 @@ jobs:
       id: make-commit
       run: |
         git add tfx_addons/version.py
-        git commit --message "Prepare release {{ steps.set-version.outputs.version }}"
+        git commit --message "Prepare release ${{ steps.set-version.outputs.version }}"
         echo "::set-output name=commit::$(git rev-parse HEAD)"
     - name: Push new branch
       run: git push origin r${{ steps.set-version.outputs.version }}
@@ -45,7 +45,7 @@ jobs:
       run: |
         git checkout -b ${{ github.triggering_actor }}/update-${{ steps.update-main.outputs.new_version }}
         git add tfx_addons/version.py
-        git commit --message "Update main to {{ steps.set-version.outputs.version }}"
+        git commit --message "Update main to ${{ steps.set-version.outputs.version }}"
         git push origin ${{ github.triggering_actor }}/update-${{ steps.update-main.outputs.new_version }}
         
     - name: Create pull request into main
