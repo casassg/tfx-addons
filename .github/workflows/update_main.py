@@ -39,4 +39,4 @@ with open(os.path.join(BASE_DIR, "tfx_addons", "version.py"), "w") as f:
     else:
       f.write(l)
 
-print(".".join([major, int(next_minor)]))
+print(".".join([major, str(next_minor)]))
